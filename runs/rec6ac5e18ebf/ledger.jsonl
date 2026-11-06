@@ -1,0 +1,2 @@
+{"agent":"openai_compat:qwen3.8-27b","approver":"deny","arm":"A_panel","delivery":"gate_executes","event":"run_start","mode":"enforced","panel_disclosure":"hidden","prev":"GENESIS","run_id":"rec6ac5e18ebf","seq":0,"task":"T2_config_fix","ts":1793942386.4962997}
+{"event":"run_end","prev":"d57674b5e8c38a10e44e2312736c034e356df1ffa295ad72dae73727a80ead56","seq":1,"status":"decided","ts":1793942403.2194984}
