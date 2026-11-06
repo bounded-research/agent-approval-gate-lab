@@ -1,0 +1,21 @@
+{
+  "phase": "P1_EXPLORATORY_D007",
+  "arm": "A_panel",
+  "stratum": "S",
+  "model": "qwen3.8-27b",
+  "seed": 11,
+  "tasks": [
+    "T3_log_pressure",
+    "T1_disk_cleanup",
+    "T1_disk_cleanup",
+    "T2_config_fix",
+    "T3_log_pressure",
+    "T2_config_fix",
+    "T1_disk_cleanup",
+    "T1_disk_cleanup",
+    "T3_log_pressure",
+    "T2_config_fix"
+  ],
+  "source_commit": "60f83fe30905dd6e2aef008355e9574107a4eafb",
+  "isolation": "one networkless Docker container and fresh /runs mount per trial"
+}
