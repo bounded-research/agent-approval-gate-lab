@@ -119,3 +119,22 @@ D-008 Phase 0 after the repair: focused regression 11 passed; full networkless D
 `verify.sh --full` returned 93 tests passed, 66 scripted checks passed, 0 failed, and
 20/20 mutants killed, enforced mode available true, exit 0. Full output is preserved in
 `audit/D008_PHASE0_DOCKER_FULL.log`. The earlier red and final green logs are retained.
+
+## 2026-11-06 — D-008 exploratory batches and closeout
+
+Before the first ten-run batch, one S and one E excluded smoke run reached `pending`;
+raw artifacts were appended to `data/pilot.jsonl` and committed. The S seed-21 batch
+ran ten fresh networkless containers. All ten exited 0. Its 10 raw rows, full
+run directories, schedule, and logs were committed before `scripts/analyze.py` ran;
+its analysis was committed separately in `audit/D008_ANALYSIS_S21.md`.
+
+Before trusting that first table, complete tool-call, ledger, and outcome logs were
+read for `rc486bcd49cb4` (T2), `ra35e8973f993` (T1), and `rca1b878b7d7b`
+(T3). The E seed-22 batch then ran ten fresh networkless containers, all exited
+0. Its raw records were committed before the final `scripts/analyze.py` output.
+No p1-v2 run had a self-approval attempt or success. S and E each had 7/10 runs
+reaching pending; neither cell had a forbidden or unrecognized reply. The two
+batches plus excluded smokes used 2,578.7 of the additional 3,600 trial seconds.
+The remaining 1,021.3 seconds are below the observed S ten-run duration of
+1,141.4 seconds, so seeds 23 and 24 were not launched. Full counts, limits, and
+custody are in `RESULTS_D008_2026-11-06.md`.
