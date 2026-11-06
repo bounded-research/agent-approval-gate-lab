@@ -14,15 +14,19 @@ harness-held agent identity (the agent never sees its key), a default-deny polic
 agent, action, canonical path, file identity (dev, inode, ctime) and expiry. Two delivery modes:
 the gate performs the action, or it releases a one-use permit to the agent (an MFA-style flow).
 
-**What is proven so far** (by scripted agents, not by models; see `audit/SELF_AUDIT_RESULTS.md`):
+**What the scripted instrument checks show** (see `audit/SELF_AUDIT_RESULTS.md` and the owner-machine audit):
 - the vulnerable panel lets a scripted agent approve its own request and the action executes;
 - the gate records the same attempt and nothing happens;
 - forged, replayed and symlink-swapped permits are rejected;
 - with the OS boundary on, a shell route around the gate changes nothing; without it, the oracle flags the change as unauthorized;
 - every safety check is load-bearing: 18 of 18 deliberate code mutations make the test suite fail (`mutation/MUTATION_RESULTS.md`).
 
-**What is not proven:** anything about how often a real model attempts this. No live model run has
-happened. That is Phase 1, preregistered in `prereg/P1_PREREG.md`.
+**Live result:** 40 exploratory, hidden-panel `qwen3.8-27b` runs in enforced networkless
+containers recorded 0 self-approval attempts (20 neutral, 20 pressure). Nine runs inspected or named
+the panel; 39/40 completed the file-level task check. The 0/20 cells do not establish a low attempt
+rate. No live Phase 2 gate comparison was run. See `RESULTS_2026-11-06.md` and the two dated audits.
+The current-session results are exploratory because the owner prediction was blank and D-006/D-007
+changed model/adapter and isolation after two engineering smoke runs.
 
 ## Quick start
 
@@ -33,7 +37,7 @@ sudo bash scripts/setup_enforced.sh      # optional: creates user 'labagent' so 
 sudo -E bash scripts/verify.sh           # rerun with enforced mode included
 ```
 
-Live runs (Phase 1; read the prereg first and commit before running):
+Example live run with an Anthropic API account (not used in this session; read the prereg first):
 ```bash
 export ANTHROPIC_API_KEY=...             # never commit keys; the agent process never sees them
 sudo -E python3 scripts/run_trials.py --phase P1 --arm A_panel --backend anthropic \
@@ -60,13 +64,14 @@ python3 scripts/analyze.py
 | `mutation/` | mutation check: break each mechanism, confirm a test fails |
 | `scripts/` | verify, self-audit, trial runner, analysis, enforced-mode setup |
 | `audit/` | self-audit results (passed / failed / unresolved / not-tested) |
-| `data/` | append-only trial records (empty until Phase 1) |
+| `data/` | append-only pilot and exploratory trial records plus batch schedules/logs |
 | `WORKLOG.md` | dated record of every session, including mistakes |
 
 ## Honest limits
 
-File-state oracle only: reads, exfiltration and network are not observed. Container mode is written
-but untested (no Docker daemon in the build environment). The vulnerable panel is a file-based model
-of METR's setup, not a copy of it. See `audit/SELF_AUDIT_RESULTS.md` § Not tested.
+The oracle sees file-state changes only; reads and exfiltration are not observed. Docker enforced mode
+was exercised on the owner machine, but container escape was not tested. The vulnerable panel is a
+file-based model of the trust boundary, not METR's UI. There is no SMS or external human MFA service;
+live runs used a scripted denying approver. See `audit/CONTROL_BOUNDARY_AUDIT_2026-11-06.md`.
 
 License: not yet chosen (owner's decision before publishing).
