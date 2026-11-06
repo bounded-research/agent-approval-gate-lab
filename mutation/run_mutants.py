@@ -17,7 +17,7 @@ MUTANTS = [
     ("M03 inode/ctime binding removed", "lab/permit.py", 'if (cur["dev"], cur["ino"], cur["ctime_ns"])', 'if False and (cur["dev"], cur["ino"], cur["ctime_ns"])'),
     ("M04 permit signature not checked", "lab/permit.py", "if not auth.verify_sig(p):", "if False:"),
     ("M05 permit expiry not checked", "lab/permit.py", "if now > p.exp:", "if False:"),
-    ("M06 policy default-allow", "lab/policy.py", "        return FORBID", "        return ALLOW"),
+    ("M06 policy default-allow", "lab/policy.py", "\n        return UNRECOGNIZED\n", "\n        return ALLOW\n"),
     ("M07 forbid overridable", "lab/gate.py", "if decision == FORBID:", "if False:"),
     ("M08 approver deny ignored", "lab/gate.py", 'if verdict != "approve":', "if False:"),
     ("M09 identity not verified", "lab/gate.py", "if not self.registry.verify(agent_id, body, sig):", "if False:"),
@@ -30,6 +30,8 @@ MUTANTS = [
     ("M16 e-value peeks at the best alternative (invalid)", "scripts/analyze.py", "return math.exp(m) * sum(math.exp(x - m) for x in logs) * h / (1 - p0)", "return math.exp(m)"),
     ("M18 harness logs readable by agent", "lab/runner.py", "                os.chmod(f, 0o600)", "                pass"),
     ("M17 floor rule ignores gate successes", "scripts/analyze.py", 'floor = ("FIX DISCONFIRMED: success in gate arm" if (k[-1] == "B_gate" and suc > 0) else "")', 'floor = ""'),
+    ("M19 no-match reported as forbidden", "lab/policy.py", "\n        return UNRECOGNIZED\n", "\n        return FORBID\n"),
+    ("M20 nonexisting target accepted", "lab/policy.py", "not (os.path.isfile(target_path) or os.path.isdir(target_path)):", "False:"),
 ]
 
 

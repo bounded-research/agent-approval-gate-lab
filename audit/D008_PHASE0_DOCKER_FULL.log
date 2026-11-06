@@ -1,0 +1,92 @@
+ Image docker-verify Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 599B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 703B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.12-slim
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 606.00kB 0.0s done
+#5 DONE 0.1s
+
+#6 [1/4] FROM docker.io/library/python:3.12-slim@sha256:804ddf3251a60bbf9c92e73b7566c40428d54d0e79d3428194edf40da6521286
+#6 resolve docker.io/library/python:3.12-slim@sha256:804ddf3251a60bbf9c92e73b7566c40428d54d0e79d3428194edf40da6521286 0.0s done
+#6 DONE 0.0s
+
+#7 [2/4] RUN apt-get update && apt-get install -y --no-install-recommends util-linux && rm -rf /var/lib/apt/lists/*  && useradd --system --no-create-home --shell /usr/sbin/nologin labagent  && pip install --no-cache-dir pytest
+#7 CACHED
+
+#8 [3/4] WORKDIR /lab
+#8 CACHED
+
+#9 [4/4] COPY . /lab
+#9 DONE 0.2s
+
+#10 exporting to image
+#10 exporting layers
+#10 exporting layers 0.2s done
+#10 exporting manifest sha256:1bb267a5cce9bf1d3c71cd02d95f029f83cb3e796c4a84fb6cbc85f0ce9176f4 0.0s done
+#10 exporting config sha256:a596ca60b1dbec20d2d37e7cf9474affc2eaa79382df31261021c362dff2409d 0.0s done
+#10 exporting attestation manifest sha256:8b9adb0ed9e031369bc825694abc907666962628cb6d841b27baeb60d8ddc0fc 0.1s done
+#10 exporting manifest list sha256:c4d14f98cb62ca1a9d1359611d95235606881c98380310f0d27788663f49e872
+#10 exporting manifest list sha256:c4d14f98cb62ca1a9d1359611d95235606881c98380310f0d27788663f49e872 0.0s done
+#10 naming to docker.io/library/docker-verify:latest done
+#10 unpacking to docker.io/library/docker-verify:latest 0.1s done
+#10 DONE 0.5s
+
+#11 resolving provenance for metadata file
+#11 DONE 0.0s
+ Image docker-verify Built 
+ Container docker-verify-run-df4460ada34b Creating 
+ Container docker-verify-run-df4460ada34b Created 
+== 1. manifest (files match MANIFEST.sha256)
+== 2. redaction scan (no personal names, emails or phone numbers)
+redaction scan: OK
+== 3. test suite
+........................................................................ [ 77%]
+.....................                                                    [100%]
+93 passed in 13.27s
+== 4. spec -> test links
+spec->test links: OK
+== 5. self-audit (output to temp dir; committed audit/ is the reference)
+passed 66  failed 0  pytest: 93 passed in 13.16s
+== 6. mutation check
+# Mutation results
+
+Each row breaks one safety mechanism. KILLED = the test suite caught it.
+
+| Mutant | Result | First failing test |
+|---|---|---|
+| M01 one-use check removed | KILLED (suite failed) | `FAILED tests/test_matrix.py::test_permit_attacks[local] - AssertionError: ass...` |
+| M02 target path binding removed | KILLED (suite failed) | `FAILED tests/test_matrix.py::test_permit_attacks[local] - AssertionError: ass...` |
+| M03 inode/ctime binding removed | KILLED (suite failed) | `FAILED tests/test_parts.py::test_permit_expiry_signature_and_inode - Assertio...` |
+| M04 permit signature not checked | KILLED (suite failed) | `FAILED tests/test_matrix.py::test_permit_attacks[local] - AssertionError: ass...` |
+| M05 permit expiry not checked | KILLED (suite failed) | `FAILED tests/test_parts.py::test_permit_expiry_signature_and_inode - Assertio...` |
+| M06 policy default-allow | KILLED (suite failed) | `FAILED tests/test_parts.py::test_policy_default_deny_prefix_boundary_and_symlinks` |
+| M07 forbid overridable | KILLED (suite failed) | `FAILED tests/test_matrix.py::test_forbidden_request_rejected[T1_disk_cleanup-local]` |
+| M08 approver deny ignored | KILLED (suite failed) | `FAILED tests/test_matrix.py::test_gold_is_clean[B_gate-T1_disk_cleanup-local]` |
+| M09 identity not verified | KILLED (suite failed) | `FAILED tests/test_parts.py::test_gate_rejects_bad_identity - AssertionError: ...` |
+| M10 frame check disabled | KILLED (suite failed) | `FAILED tests/test_matrix.py::test_mutated_gold_is_caught_and_witness_is_complete[T1_disk_cleanup-local]` |
+| M11 unauthorized-effect check disabled | KILLED (suite failed) | `FAILED tests/test_matrix.py::test_alt_route[A_panel-T1_disk_cleanup-local] - ...` |
+| M12 self-approval detection disabled | KILLED (suite failed) | `FAILED tests/test_matrix.py::test_self_approval_break_and_fix[T1_disk_cleanup-local]` |
+| M13 ledger prev-hash not checked | KILLED (suite failed) | `FAILED tests/test_parts.py::test_ledger_chain_ok_and_detects_edit_delete_reorder` |
+| M14 agent runs as root in enforced mode | KILLED (suite failed) | `FAILED tests/test_matrix.py::test_alt_route[A_panel-T1_disk_cleanup-enforced]` |
+| M15 panel always discloses decision path | KILLED (suite failed) | `FAILED tests/test_analysis_and_cli.py::test_panel_disclosure_factor_and_symmetric_panel_dir` |
+| M16 e-value peeks at the best alternative (invalid) | KILLED (suite failed) | `FAILED tests/test_analysis_and_cli.py::test_e_value_has_expectation_at_most_one_under_null` |
+| M18 harness logs readable by agent | KILLED (suite failed) | `FAILED tests/test_parts.py::test_enforced_agent_cannot_read_harness_logs_or_see_arm` |
+| M17 floor rule ignores gate successes | KILLED (suite failed) | `FAILED tests/test_analysis_and_cli.py::test_floor_rule_flags_any_gate_success` |
+| M19 no-match reported as forbidden | KILLED (suite failed) | `FAILED tests/test_parts.py::test_policy_default_deny_prefix_boundary_and_symlinks` |
+| M20 nonexisting target accepted | KILLED (suite failed) | `FAILED tests/test_matrix.py::test_valid_action_with_annotated_target_is_unrecognized[A_panel-local]` |
+
+Survivors: 0 of 20
+enforced mode available: True
+VERIFY OK

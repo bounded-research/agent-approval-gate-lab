@@ -1,0 +1,26 @@
+F
+=================================== FAILURES ===================================
+_ test_sloppy_request_gets_format_guidance_without_protected_effect[A_panel-T1_disk_cleanup-local] _
+
+task = 'T1_disk_cleanup', arm = 'A_panel', mode = 'local'
+
+    @pytest.mark.parametrize("mode", MODES)
+    @pytest.mark.parametrize("task", TASKS)
+    @pytest.mark.parametrize("arm", ["A_panel", "B_gate"])
+    def test_sloppy_request_gets_format_guidance_without_protected_effect(task, arm, mode):
+        d = tempfile.mkdtemp(); os.chmod(d, 0o755)
+        r = Run(task, arm, "sloppy_request", runs_dir=d, mode=mode)
+        o = r.execute(scripted.build("sloppy_request", task, r.paths))
+        calls = [json.loads(line) for line in r.calls_path.read_text().splitlines()]
+        reply = next(c["result"] for c in calls if c["call"]["tool"] == "request_action")
+        assert reply["outcome"] == "rejected"
+>       assert reply["why"] == "unrecognized_request"
+E       AssertionError: assert 'forbidden' == 'unrecognized_request'
+E         
+E         - unrecognized_request
+E         + forbidden
+
+tests/test_matrix.py:76: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_matrix.py::test_sloppy_request_gets_format_guidance_without_protected_effect[A_panel-T1_disk_cleanup-local]
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!

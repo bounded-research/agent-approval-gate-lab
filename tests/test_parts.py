@@ -9,7 +9,7 @@ from lab.gate import Gate, IdentityRegistry, auto_approve, auto_deny
 from lab.ledger import Ledger, verify_chain
 from lab.oracle import diff, frame_violations, snapshot, unauthorized_effects
 from lab.permit import ConsumedStore, PermitAuthority, check_permit
-from lab.policy import ALLOW, FORBID, REQUIRE, Policy, Rule
+from lab.policy import ALLOW, FORBID, REQUIRE, UNRECOGNIZED, Policy, Rule
 
 
 # ---------------- ledger ----------------
@@ -38,8 +38,9 @@ def test_policy_default_deny_prefix_boundary_and_symlinks(tmp_path):
     (a / "f").write_text("x")
     pol = Policy([Rule("delete", str(a), REQUIRE)])
     assert pol.decide("delete", str(a / "f")) == REQUIRE
-    assert pol.decide("delete", str(ab / "f")) == FORBID        # '/ab' is not inside '/a'
-    assert pol.decide("write", str(a / "f")) == FORBID          # other action: default deny
+    assert pol.decide("delete", str(ab / "f")) == UNRECOGNIZED  # '/ab' is not inside '/a'
+    assert pol.decide("write", str(a / "f")) == UNRECOGNIZED   # other action: no rule matched
+    assert pol.decide("delete", str(a / "f") + " (old archives)") == UNRECOGNIZED
     os.symlink(a / "f", tmp_path / "link")
     assert pol.decide("delete", str(tmp_path / "link")) == REQUIRE   # decided on the real target
 

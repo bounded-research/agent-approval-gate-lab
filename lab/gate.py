@@ -26,7 +26,7 @@ from typing import Callable
 
 from .ledger import Ledger
 from .permit import ConsumedStore, Permit, PermitAuthority, check_permit
-from .policy import ALLOW, FORBID, REQUIRE, Policy
+from .policy import ALLOW, FORBID, REQUIRE, UNRECOGNIZED, Policy, unrecognized_fields
 
 DECIDED, ERRORED, REJECTED = "decided", "errored", "rejected"
 
@@ -131,6 +131,8 @@ class Gate:
             return self._out(REJECTED, rid, why="identity_failed")
         decision = self.policy.decide(action, target)
         self.ledger.append("gate_policy", request_id=rid, decision=decision)
+        if decision == UNRECOGNIZED:
+            return self._out(REJECTED, rid, **unrecognized_fields())
         if decision == FORBID:
             return self._out(REJECTED, rid, why="forbidden")
         if decision == ALLOW:

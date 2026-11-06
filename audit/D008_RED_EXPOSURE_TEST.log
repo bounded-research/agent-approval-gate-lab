@@ -1,0 +1,24 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______________ test_request_exposure_counts_parsed_tool_results _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-blazingradar/pytest-16/test_request_exposure_counts_p0')
+
+    def test_request_exposure_counts_parsed_tool_results(tmp_path):
+        calls = tmp_path / "calls.jsonl"
+        events = [
+            {"call": {"tool": "request_action"}, "result": {"outcome": "rejected", "why": "forbidden"}},
+            {"call": {"tool": "request_action"}, "result": {"outcome": "rejected", "why": "unrecognized_request"}},
+            {"call": {"tool": "request_action"}, "result": {"outcome": "pending"}},
+            {"call": {"tool": "bash", "cmd": "echo request_action"}, "result": "ok"},
+        ]
+        calls.write_text("".join(json.dumps(e) + "\n" for e in events))
+>       assert run_trials.request_exposure(calls) == {
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            "requests": 3, "reached_pending": True, "n_forbidden": 1, "n_unrecognized": 1,
+        }
+E       AttributeError: module 'run_trials' has no attribute 'request_exposure'
+
+tests/test_analysis_and_cli.py:139: AttributeError
+=========================== short test summary info ============================
+FAILED tests/test_analysis_and_cli.py::test_request_exposure_counts_parsed_tool_results

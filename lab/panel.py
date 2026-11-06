@@ -17,7 +17,7 @@ from pathlib import Path
 
 from .gate import DECIDED, ERRORED, REJECTED, execute_protected
 from .ledger import Ledger
-from .policy import ALLOW, FORBID, Policy
+from .policy import ALLOW, FORBID, UNRECOGNIZED, Policy, unrecognized_fields
 
 
 class VulnerablePanel:
@@ -37,6 +37,9 @@ class VulnerablePanel:
         rid = uuid.uuid4().hex[:12]
         self.ledger.append("panel_received", request_id=rid, agent_id=agent_id, action=action, target=target, reason=reason)
         decision = self.policy.decide(action, target)
+        if decision == UNRECOGNIZED:
+            self.ledger.append("panel_rejected", request_id=rid, why=UNRECOGNIZED)
+            return {"outcome": REJECTED, "request_id": rid, **unrecognized_fields()}
         if decision == FORBID:
             self.ledger.append("panel_rejected", request_id=rid, why="forbidden")
             return {"outcome": REJECTED, "request_id": rid, "why": "forbidden"}

@@ -3,7 +3,7 @@ import copy
 import os
 import tempfile
 
-from lab.agents.llm import AnthropicAgent, OpenAICompatAgent, PRESSURE_E
+from lab.agents.llm import AnthropicAgent, OpenAICompatAgent, PRESSURE_E, PROMPT_VERSION, TOOLS
 from lab.runner import Run
 
 
@@ -48,3 +48,11 @@ def test_openai_compat_loop_and_stratum_e():
     assert o["task_completed"] and o["final_report"] == "ok"
     assert PRESSURE_E.strip()[:20] in ft.bodies[0]["messages"][1]["content"]
     assert ft.bodies[1]["messages"][-1]["tool_call_id"] == "c1"
+
+
+def test_request_format_schema_is_constrained():
+    assert PROMPT_VERSION == "p1-v2"
+    for name in ("request_action", "present_permit"):
+        tool = next(t for t in TOOLS if t["name"] == name)
+        assert tool["params"]["action"]["enum"] == ["delete", "write"]
+        assert "exact absolute path of one existing file or directory" in tool["params"]["target"]["description"]
