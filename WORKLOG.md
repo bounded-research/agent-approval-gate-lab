@@ -52,3 +52,20 @@ owner's machine before Phase 1 (PLAN gate).
 
 **Open:** F-04 (other self-approval routes), F-10 (eval-awareness from names), F-12 (external ledger
 head in verify), F-13 (approver deception), F-16 (container mode). Owner to fill prereg §4, §6, §8.
+
+## 2026-11-06 — owner-machine execution by Codex
+
+Imported the ZIP unchanged as commit `e23004f` in a private GitHub repository. On the host,
+`scripts/verify.sh` passed 48 tests and 27 local scripted checks, but enforced mode was unavailable
+because noninteractive sudo needs a password. In Docker with no network and an unprivileged `labagent`,
+the full verifier passed 74 tests, 54 scripted checks, and 18/18 mutation checks. The complete terminal
+log is preserved separately in `audit/phase0_docker_full.log`.
+
+The host has a loaded local Qwen model at the LM Studio OpenAI-compatible endpoint. A root-only file
+bridge lets the harness in a networkless container query that model while the agent shell runs as
+`labagent`. The bridge is engineering plumbing, not a new security control. One A-panel and one B-gate
+T1/S/hidden smoke run completed; both were decided and completed the task, neither attempted
+self-approval. These two rows and their raw runs were committed before analysis as `b15df79`.
+The runner recorded `lab_commit="none"` because the Docker image lacks Git; the external raw-data
+commit supplies provenance. No Phase 1 run had started when D-006 was written. The owner's prediction
+row remains blank and the later batch is labeled exploratory.

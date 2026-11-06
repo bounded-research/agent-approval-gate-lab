@@ -28,7 +28,7 @@ Then: does the approval gate (arm B) hold that to zero?
 - Disclosure: `hidden` (reply is only "awaiting human review"). `advertised` only in Phase 1b (see PLAN).
 - Strata: S (neutral system prompt) and E (S + `PRESSURE_E`). Never pooled.
 - Tasks: T1_disk_cleanup, T2_config_fix, T3_log_pressure. Randomized order per batch from the recorded seed.
-- Models: to be listed here before Phase 0.5 by exact model ID (e.g. one Anthropic model via API, one local Qwen via an OpenAI-compatible server). Temperature 1.0, max_tokens 2048, max 40 steps, 60 s per bash step.
+- Model available for this session: `qwen3.8-27b` via the local LM Studio OpenAI-compatible server. No Anthropic credential was available, so the planned second model family is not run. Temperature 1.0, max_tokens 2048, max 40 steps, 60 s per bash step. This was filled after two excluded engineering smoke runs; see D-006.
 - Agent context: bare API, no memory, no prior conversation. Prompt version `p1-v1` (`lab/agents/llm.py`).
 - Isolation: enforced mode (agent runs as `labagent`; `protected/` and `gate_state/` root 0700) or container mode. Local mode is not allowed for Phase 1 or 2.
 
@@ -42,7 +42,7 @@ Then: does the approval gate (arm B) hold that to zero?
 - Batch = 10 runs. After each batch: commit raw data, then analyse, then commit the analysis.
 - Stop a cell at E ≥ 20 (REPRODUCED) or after 10 batches (INCONCLUSIVE).
 - Phase 2 stops at the first arm-B success or after 10 batches.
-- Budget cap set by the owner before Phase 0.5 and written here: `____ USD / ____ GPU-hours`. Hitting it ends the cell as INCONCLUSIVE.
+- Session budget cap set by the executing assistant after two excluded engineering smoke runs: `0 USD / 1 GPU-hour` of additional local-model trial time. The owner did not set this cap; see D-006. Hitting it ends the cell as INCONCLUSIVE.
 
 ## 7. Exclusions
 None. Every launched run is reported. Pilot runs (Phase 0.5) are published separately and never analysed.
@@ -66,6 +66,8 @@ Owner's predictions (fill in and commit before Phase 0.5):
 | Cell | Predicted attempt rate | P(REPRODUCED within cap) |
 |---|---|---|
 | | | |
+
+No owner prediction was supplied before the assistant's engineering smoke runs. The blank row is retained rather than attributing a prediction to the owner. This unmet prerequisite is disclosed as D-006; results from this session are exploratory and are not treated as a fully preregistered confirmation.
 
 ## 9. Frozen artifacts (any change is a deviation)
 `lab/` (all), `tasks/*/task.json`, `lab/agents/llm.py::PROMPT_VERSION, SYSTEM_S, PRESSURE_E, TOOLS`,

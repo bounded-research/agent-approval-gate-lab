@@ -1,0 +1,191 @@
+ Image docker-verify Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 599B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile:
+#2 transferring dockerfile: 703B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.12-slim
+#3 DONE 0.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/4] FROM docker.io/library/python:3.12-slim@sha256:804ddf3251a60bbf9c92e73b7566c40428d54d0e79d3428194edf40da6521286
+#5 resolve docker.io/library/python:3.12-slim@sha256:804ddf3251a60bbf9c92e73b7566c40428d54d0e79d3428194edf40da6521286 0.0s done
+#5 CACHED
+
+#6 [internal] load build context
+#6 transferring context: 435.99kB done
+#6 DONE 0.1s
+
+#7 [2/4] RUN apt-get update && apt-get install -y --no-install-recommends util-linux && rm -rf /var/lib/apt/lists/*  && useradd --system --no-create-home --shell /usr/sbin/nologin labagent  && pip install --no-cache-dir pytest
+#7 0.361 Get:1 http://deb.debian.org/debian trixie InRelease [140 kB]
+#7 0.428 Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+#7 0.464 Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+#7 0.490 Get:4 http://deb.debian.org/debian trixie/main amd64 Packages [9678 kB]
+#7 0.674 Get:5 http://deb.debian.org/debian trixie-updates/main amd64 Packages [1108 B]
+#7 0.699 Get:6 http://deb.debian.org/debian-security trixie-security/main amd64 Packages [298 kB]
+#7 1.083 Fetched 10.2 MB in 1s (12.2 MB/s)
+#7 1.083 Reading package lists...
+#7 1.429 Reading package lists...
+#7 1.745 Building dependency tree...
+#7 1.838 Reading state information...
+#7 1.912 The following additional packages will be installed:
+#7 1.913   bsdutils libblkid1 liblastlog2-2 libmount1 libsmartcols1 libuuid1 login
+#7 1.913   mount
+#7 1.938 The following packages will be upgraded:
+#7 1.939   bsdutils libblkid1 liblastlog2-2 libmount1 libsmartcols1 libuuid1 login
+#7 1.939   mount util-linux
+#7 2.022 9 upgraded, 0 newly installed, 0 to remove and 22 not upgraded.
+#7 2.022 Need to get 2223 kB of archives.
+#7 2.022 After this operation, 33.8 kB of additional disk space will be used.
+#7 2.022 Get:1 http://deb.debian.org/debian trixie/main amd64 bsdutils amd64 1:2.41.5-0+deb13u1 [110 kB]
+#7 2.091 Get:2 http://deb.debian.org/debian trixie/main amd64 liblastlog2-2 amd64 2.41.5-0+deb13u1 [28.8 kB]
+#7 2.093 Get:3 http://deb.debian.org/debian trixie/main amd64 libuuid1 amd64 2.41.5-0+deb13u1 [37.8 kB]
+#7 2.114 Get:4 http://deb.debian.org/debian trixie/main amd64 libblkid1 amd64 2.41.5-0+deb13u1 [172 kB]
+#7 2.142 Get:5 http://deb.debian.org/debian trixie/main amd64 libmount1 amd64 2.41.5-0+deb13u1 [210 kB]
+#7 2.148 Get:6 http://deb.debian.org/debian trixie/main amd64 libsmartcols1 amd64 2.41.5-0+deb13u1 [143 kB]
+#7 2.152 Get:7 http://deb.debian.org/debian trixie/main amd64 util-linux amd64 2.41.5-0+deb13u1 [1242 kB]
+#7 2.210 Get:8 http://deb.debian.org/debian trixie/main amd64 mount amd64 2.41.5-0+deb13u1 [163 kB]
+#7 2.233 Get:9 http://deb.debian.org/debian trixie/main amd64 login amd64 1:4.16.0-2+really2.41.5-0+deb13u1 [115 kB]
+#7 2.340 debconf: unable to initialize frontend: Dialog
+#7 2.340 debconf: (TERM is not set, so the dialog frontend is not usable.)
+#7 2.340 debconf: falling back to frontend: Readline
+#7 2.341 debconf: unable to initialize frontend: Readline
+#7 2.341 debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC entries checked: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.40.1 /usr/local/share/perl/5.40.1 /usr/lib/x86_64-linux-gnu/perl5/5.40 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.40 /usr/share/perl/5.40 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 8, <STDIN> line 9.)
+#7 2.341 debconf: falling back to frontend: Teletype
+#7 2.345 debconf: unable to initialize frontend: Teletype
+#7 2.345 debconf: (This frontend requires a controlling tty.)
+#7 2.345 debconf: falling back to frontend: Noninteractive
+#7 2.720 Fetched 2223 kB in 0s (7706 kB/s)
+#7 2.747 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5645 files and directories currently installed.)
+#7 2.759 Preparing to unpack .../bsdutils_1%3a2.41.5-0+deb13u1_amd64.deb ...
+#7 2.789 Unpacking bsdutils (1:2.41.5-0+deb13u1) over (1:2.41-5) ...
+#7 2.935 Setting up bsdutils (1:2.41.5-0+deb13u1) ...
+#7 3.011 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5645 files and directories currently installed.)
+#7 3.014 Preparing to unpack .../liblastlog2-2_2.41.5-0+deb13u1_amd64.deb ...
+#7 3.055 Unpacking liblastlog2-2:amd64 (2.41.5-0+deb13u1) over (2.41-5) ...
+#7 3.137 Setting up liblastlog2-2:amd64 (2.41.5-0+deb13u1) ...
+#7 3.218 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5645 files and directories currently installed.)
+#7 3.221 Preparing to unpack .../libuuid1_2.41.5-0+deb13u1_amd64.deb ...
+#7 3.251 Unpacking libuuid1:amd64 (2.41.5-0+deb13u1) over (2.41-5) ...
+#7 3.334 Setting up libuuid1:amd64 (2.41.5-0+deb13u1) ...
+#7 3.417 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5645 files and directories currently installed.)
+#7 3.421 Preparing to unpack .../libblkid1_2.41.5-0+deb13u1_amd64.deb ...
+#7 3.451 Unpacking libblkid1:amd64 (2.41.5-0+deb13u1) over (2.41-5) ...
+#7 3.538 Setting up libblkid1:amd64 (2.41.5-0+deb13u1) ...
+#7 3.619 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5645 files and directories currently installed.)
+#7 3.623 Preparing to unpack .../libmount1_2.41.5-0+deb13u1_amd64.deb ...
+#7 3.654 Unpacking libmount1:amd64 (2.41.5-0+deb13u1) over (2.41-5) ...
+#7 3.741 Setting up libmount1:amd64 (2.41.5-0+deb13u1) ...
+#7 3.822 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5645 files and directories currently installed.)
+#7 3.825 Preparing to unpack .../libsmartcols1_2.41.5-0+deb13u1_amd64.deb ...
+#7 3.856 Unpacking libsmartcols1:amd64 (2.41.5-0+deb13u1) over (2.41-5) ...
+#7 3.942 Setting up libsmartcols1:amd64 (2.41.5-0+deb13u1) ...
+#7 4.031 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5645 files and directories currently installed.)
+#7 4.034 Preparing to unpack .../util-linux_2.41.5-0+deb13u1_amd64.deb ...
+#7 4.065 Unpacking util-linux (2.41.5-0+deb13u1) over (2.41-5) ...
+#7 4.805 Setting up util-linux (2.41.5-0+deb13u1) ...
+#7 4.873 update-alternatives: warning: forcing reinstallation of alternative /bin/more because link group pager is broken
+#7 4.873 update-alternatives: warning: skip creation of /usr/share/man/man1/pager.1.gz because associated file /usr/share/man/man1/more.1.gz (of link group pager) doesn't exist
+#7 4.982 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5650 files and directories currently installed.)
+#7 4.985 Preparing to unpack .../mount_2.41.5-0+deb13u1_amd64.deb ...
+#7 5.015 Unpacking mount (2.41.5-0+deb13u1) over (2.41-5) ...
+#7 5.165 Preparing to unpack .../login_1%3a4.16.0-2+really2.41.5-0+deb13u1_amd64.deb ...
+#7 5.209 Unpacking login (1:4.16.0-2+really2.41.5-0+deb13u1) over (1:4.16.0-2+really2.41-5) ...
+#7 5.314 Setting up mount (2.41.5-0+deb13u1) ...
+#7 5.344 Setting up login (1:4.16.0-2+really2.41.5-0+deb13u1) ...
+#7 5.392 Processing triggers for libc-bin (2.41-12+deb13u2) ...
+#7 6.496 Collecting pytest
+#7 6.641   Downloading pytest-9.2.0-py3-none-any.whl.metadata (7.9 kB)
+#7 6.678 Collecting iniconfig>=2 (from pytest)
+#7 6.722   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+#7 6.766 Collecting packaging>=24 (from pytest)
+#7 6.802   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+#7 6.836 Collecting pluggy<2,>=1.6 (from pytest)
+#7 6.873   Downloading pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+#7 6.903 Collecting pygments>=2.15 (from pytest)
+#7 6.948   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+#7 6.996 Downloading pytest-9.2.0-py3-none-any.whl (411 kB)
+#7 7.139 Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+#7 7.180 Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#7 7.219 Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+#7 7.256 Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+#7 7.304    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 25.1 MB/s eta 0:00:00
+#7 7.316 Installing collected packages: pygments, pluggy, packaging, iniconfig, pytest
+#7 7.920 Successfully installed iniconfig-2.3.1 packaging-26.3 pluggy-1.7.0 pygments-2.21.0 pytest-9.2.0
+#7 7.920 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#7 8.065 
+#7 8.065 [notice] A new release of pip is available: 25.0.1 -> 26.3
+#7 8.065 [notice] To update, run: pip install --upgrade pip
+#7 DONE 8.2s
+
+#8 [3/4] WORKDIR /lab
+#8 DONE 0.1s
+
+#9 [4/4] COPY . /lab
+#9 DONE 0.1s
+
+#10 exporting to image
+#10 exporting layers
+#10 exporting layers 0.8s done
+#10 exporting manifest sha256:484a9a4210fc589d1bc86b9f78721fd6407a3c05eef444a63ecace20eff1276e 0.0s done
+#10 exporting config sha256:c86b36fadd972c2c367c241ef391ed9811e178ab01cc070cce39cd522d581d38 0.0s done
+#10 exporting attestation manifest sha256:cddcdf22f28c645bb314ab17479ccc4dc0c652b5bb9d964d21ceaa33591f5af1 0.1s done
+#10 exporting manifest list sha256:b2516ee106e70dc820125fa0889132c6739a2235cd15df9f46646d1184f15866
+#10 exporting manifest list sha256:b2516ee106e70dc820125fa0889132c6739a2235cd15df9f46646d1184f15866 0.0s done
+#10 naming to docker.io/library/docker-verify:latest done
+#10 unpacking to docker.io/library/docker-verify:latest
+#10 unpacking to docker.io/library/docker-verify:latest 0.2s done
+#10 DONE 1.2s
+
+#11 resolving provenance for metadata file
+#11 DONE 0.0s
+ Image docker-verify Built 
+ Container docker-verify-run-fc23452a8f6d Creating 
+ Container docker-verify-run-fc23452a8f6d Created 
+== 1. manifest (files match MANIFEST.sha256)
+== 2. redaction scan (no personal names, emails or phone numbers)
+redaction scan: OK
+== 3. test suite
+........................................................................ [ 97%]
+..                                                                       [100%]
+74 passed in 12.99s
+== 4. spec -> test links
+spec->test links: OK
+== 5. self-audit (output to temp dir; committed audit/ is the reference)
+passed 54  failed 0  pytest: 74 passed in 12.95s
+== 6. mutation check
+# Mutation results
+
+Each row breaks one safety mechanism. KILLED = the test suite caught it.
+
+| Mutant | Result | First failing test |
+|---|---|---|
+| M01 one-use check removed | KILLED (suite failed) | `FAILED tests/test_matrix.py::test_permit_attacks[local] - AssertionError: ass...` |
+| M02 target path binding removed | KILLED (suite failed) | `FAILED tests/test_matrix.py::test_permit_attacks[local] - AssertionError: ass...` |
+| M03 inode/ctime binding removed | KILLED (suite failed) | `FAILED tests/test_parts.py::test_permit_expiry_signature_and_inode - Assertio...` |
+| M04 permit signature not checked | KILLED (suite failed) | `FAILED tests/test_matrix.py::test_permit_attacks[local] - AssertionError: ass...` |
+| M05 permit expiry not checked | KILLED (suite failed) | `FAILED tests/test_parts.py::test_permit_expiry_signature_and_inode - Assertio...` |
+| M06 policy default-allow | KILLED (suite failed) | `FAILED tests/test_parts.py::test_policy_default_deny_prefix_boundary_and_symlinks` |
+| M07 forbid overridable | KILLED (suite failed) | `FAILED tests/test_matrix.py::test_forbidden_request_rejected[T1_disk_cleanup-local]` |
+| M08 approver deny ignored | KILLED (suite failed) | `FAILED tests/test_matrix.py::test_gold_is_clean[B_gate-T1_disk_cleanup-local]` |
+| M09 identity not verified | KILLED (suite failed) | `FAILED tests/test_parts.py::test_gate_rejects_bad_identity - AssertionError: ...` |
+| M10 frame check disabled | KILLED (suite failed) | `FAILED tests/test_matrix.py::test_mutated_gold_is_caught_and_witness_is_complete[T1_disk_cleanup-local]` |
+| M11 unauthorized-effect check disabled | KILLED (suite failed) | `FAILED tests/test_matrix.py::test_alt_route[A_panel-T1_disk_cleanup-local] - ...` |
+| M12 self-approval detection disabled | KILLED (suite failed) | `FAILED tests/test_matrix.py::test_self_approval_break_and_fix[T1_disk_cleanup-local]` |
+| M13 ledger prev-hash not checked | KILLED (suite failed) | `FAILED tests/test_parts.py::test_ledger_chain_ok_and_detects_edit_delete_reorder` |
+| M14 agent runs as root in enforced mode | KILLED (suite failed) | `FAILED tests/test_matrix.py::test_alt_route[A_panel-T1_disk_cleanup-enforced]` |
+| M15 panel always discloses decision path | KILLED (suite failed) | `FAILED tests/test_analysis_and_cli.py::test_panel_disclosure_factor_and_symmetric_panel_dir` |
+| M16 e-value peeks at the best alternative (invalid) | KILLED (suite failed) | `FAILED tests/test_analysis_and_cli.py::test_e_value_has_expectation_at_most_one_under_null` |
+| M18 harness logs readable by agent | KILLED (suite failed) | `FAILED tests/test_parts.py::test_enforced_agent_cannot_read_harness_logs_or_see_arm` |
+| M17 floor rule ignores gate successes | KILLED (suite failed) | `FAILED tests/test_analysis_and_cli.py::test_floor_rule_flags_any_gate_success` |
+
+Survivors: 0 of 18
+enforced mode available: True
+VERIFY OK
