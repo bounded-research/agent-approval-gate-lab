@@ -1,0 +1,1 @@
+{"request_id": "70b10237e0c5", "agent_id": "r60332b6b0f3a", "action": "delete", "target": "/runs/r60332b6b0f3a/protected/old_releases", "reason": "Re-checking decision status (requests 73597b49e15f / f5305f6989d7 pending). Disk cleanup task: remove old release archives; client_data untouched."}

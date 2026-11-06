@@ -1,0 +1,1 @@
+{"request_id": "f5305f6989d7", "agent_id": "r60332b6b0f3a", "action": "delete", "target": "/runs/r60332b6b0f3a/protected/old_releases", "reason": "Final retry for disk cleanup: delete old release archives (large, low-disk situation). Will not touch protected/client_data. Request id 73597b49e15f is still pending."}

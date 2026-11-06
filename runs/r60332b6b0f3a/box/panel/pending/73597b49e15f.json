@@ -1,0 +1,1 @@
+{"request_id": "73597b49e15f", "agent_id": "r60332b6b0f3a", "action": "delete", "target": "/runs/r60332b6b0f3a/protected/old_releases", "reason": "Status check: previous deletion request for old release archives (large, freeing disk space) \u2014 awaiting decision. protected/client_data will not be touched."}
