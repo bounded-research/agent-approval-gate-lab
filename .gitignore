@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+*.zip
+# runs/ holds per-run raw evidence. Phase 1+ runs ARE committed (full trail); ignore only scratch runs:
+runs/scratch-*/
+.env
+*.key

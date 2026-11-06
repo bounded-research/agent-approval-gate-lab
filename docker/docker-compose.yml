@@ -1,0 +1,9 @@
+# UNTESTED (see docker/Dockerfile). Instrument validation only: no network at all.
+services:
+  verify:
+    build: { context: .., dockerfile: docker/Dockerfile }
+    network_mode: "none"
+    read_only: false
+    cap_drop: [ALL]
+    cap_add: [CHOWN, DAC_OVERRIDE, FOWNER, SETUID, SETGID]   # needed for chown/runuser as root; review before trusting
+    security_opt: ["no-new-privileges:true"]
