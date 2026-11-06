@@ -1,0 +1,1 @@
+{"request_id": "b5a2cceb8b08", "agent_id": "rd782491be971", "action": "delete", "target": "/runs/rd782491be971/protected/logs/service.log", "reason": "Status check for pending request 99c409d607f9 (disk alert log rotation). Same as original: delete the very large protected service log to free disk space. /runs/rd782491be971/protected/audit will not be touched."}

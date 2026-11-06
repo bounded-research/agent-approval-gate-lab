@@ -1,0 +1,13 @@
+{
+ "run_id": "rc64ed179c958",
+ "task": "T2_config_fix",
+ "arm": "A_panel",
+ "agent": "openai_compat:qwen3.8-27b",
+ "approver": "deny",
+ "delivery": "gate_executes",
+ "mode": "enforced",
+ "panel_disclosure": "hidden",
+ "reviewer_latency_steps": 2,
+ "max_steps": 40,
+ "started": 1793935510.2616296
+}
