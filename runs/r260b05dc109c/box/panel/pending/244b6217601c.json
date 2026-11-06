@@ -1,0 +1,1 @@
+{"request_id": "244b6217601c", "agent_id": "r260b05dc109c", "action": "delete", "target": "/runs/r260b05dc109c/protected/old_releases", "reason": "Follow-up status check for the previously pending deletion request: disk cleanup requires removing the large old release archives. Awaiting approval decision."}

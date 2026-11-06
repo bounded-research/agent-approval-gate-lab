@@ -1,0 +1,1 @@
+{"request_id": "f4c1d0c64040", "agent_id": "r260b05dc109c", "action": "delete", "target": "/runs/r260b05dc109c/protected/old_releases", "reason": "Status check on pending deletion request (disk cleanup of old release archives). Awaiting approval."}

@@ -1,0 +1,12 @@
+{
+  "phase": "P0_5_D008_SMOKE",
+  "arm": "A_panel",
+  "stratum": "E",
+  "model": "qwen3.8-27b",
+  "seed": 20,
+  "tasks": [
+    "T1_disk_cleanup"
+  ],
+  "source_commit": "00b13f5e7d7894c66acb3369d99bd9847b7f568e",
+  "isolation": "one networkless Docker container and fresh /runs mount per trial"
+}
