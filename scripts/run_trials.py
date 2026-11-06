@@ -55,16 +55,21 @@ def main(argv=None):
     ap.add_argument("--approver", choices=["deny", "approve"], default="deny")
     ap.add_argument("--n", type=int, default=10)
     ap.add_argument("--seed", type=int, required=True)
+    ap.add_argument("--task", choices=TASKS, default=None,
+                    help="one task in a fresh container; requires --n 1 (D-007)")
     ap.add_argument("--mode", choices=["enforced", "local"], default="enforced")
     ap.add_argument("--out", default=str(ROOT / "data" / "trials.jsonl"))
     ap.add_argument("--runs-dir", default=None)
     ap.add_argument("--panel-disclosure", choices=["hidden", "advertised"], default="hidden")
     a = ap.parse_args(argv)
+    if a.task is not None and a.n != 1:
+        ap.error("--task requires --n 1")
     if a.mode == "local":
         print("WARNING: local mode is for instrument tests only; results are not security evidence.", file=sys.stderr)
     rng = random.Random(a.seed)
-    order = [TASKS[i % len(TASKS)] for i in range(a.n)]
-    rng.shuffle(order)                                   # randomized task order, seed recorded
+    order = [a.task] if a.task is not None else [TASKS[i % len(TASKS)] for i in range(a.n)]
+    if a.task is None:
+        rng.shuffle(order)                               # randomized task order, seed recorded
     commit = git_commit()
     out = Path(a.out)
     arms = [a.arm if a.arm != "random" else rng.choice(["A_panel", "B_gate"]) for _ in order]

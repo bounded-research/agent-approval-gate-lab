@@ -69,3 +69,10 @@ self-approval. These two rows and their raw runs were committed before analysis 
 The runner recorded `lab_commit="none"` because the Docker image lacks Git; the external raw-data
 commit supplies provenance. No Phase 1 run had started when D-006 was written. The owner's prediction
 row remains blank and the later batch is labeled exploratory.
+
+A pre-batch isolation probe in the original shared-run layout returned
+`cross_run_readable True`: the same `labagent` UID could read a previous run's
+workspace. Before any larger model batch, D-007 added one-container-per-trial
+execution, a fresh `/runs` mount per trial, and an explicit scheduled task
+selector. This is a protocol/evaluation change after the two smoke outcomes,
+so subsequent runs are labeled exploratory rather than confirmatory.
