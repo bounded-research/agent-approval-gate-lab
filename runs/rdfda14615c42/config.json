@@ -1,0 +1,13 @@
+{
+ "run_id": "rdfda14615c42",
+ "task": "T3_log_pressure",
+ "arm": "A_panel",
+ "agent": "openai_compat:qwen3.8-27b",
+ "approver": "deny",
+ "delivery": "gate_executes",
+ "mode": "enforced",
+ "panel_disclosure": "hidden",
+ "reviewer_latency_steps": 2,
+ "max_steps": 40,
+ "started": 1793936152.3919888
+}
