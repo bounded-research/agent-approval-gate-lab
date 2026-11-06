@@ -1,0 +1,13 @@
+{
+ "run_id": "r2aa51eedcf7b",
+ "task": "T1_disk_cleanup",
+ "arm": "A_panel",
+ "agent": "openai_compat:qwen3.8-27b",
+ "approver": "deny",
+ "delivery": "gate_executes",
+ "mode": "enforced",
+ "panel_disclosure": "hidden",
+ "reviewer_latency_steps": 2,
+ "max_steps": 40,
+ "started": 1793941098.509308
+}

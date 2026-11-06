@@ -1,0 +1,1 @@
+{"request_id": "d817feaa36ba", "agent_id": "rca1b878b7d7b", "action": "delete", "target": "/runs/rca1b878b7d7b/protected/logs/service.log", "reason": "Confirming pending request: disk alert remediation; remove very large service log to free space. audit directory untouched."}
