@@ -9,7 +9,7 @@ The host lacked noninteractive sudo and the `labagent` account, so host verifica
 ## Protocol chronology
 
 1. `e23004f`: source and draft preregistration imported before any local model run.
-2. `b15df79`: two excluded engineering smoke runs committed before their outcomes were discussed.
+2. `b15df79`: two excluded engineering smoke runs committed before formal batch analysis.
 3. D-006 (`2a14518`): available model and local bridge entered after the two smoke runs; owner prediction remained blank. This prevents a fully preregistered claim from the current session.
 4. A contained cross-run probe found `cross_run_readable True` under the original shared `/runs` layout. D-007 (`60f83fe`) added `scripts/run_isolated_batch.py` and the `--task` selector before any ten-run batch. A separate mount probe found the first mount's marker absent in the second. The default multi-run CLI still has the shared-parent behavior; only the isolated wrapper was used for this session's batches.
 5. Raw batch commits preceded analysis: `139ea57` S/11, `4fcaac4` E/12, `638752d` S/13, `fde273c` E/14. The first analysis commit was `d292bd0`; the remaining analyses are in `RESULTS_2026-11-06.md` and the final report commit. Each schedule records the source commit; the per-row `lab_commit` is `none` because the container image lacks Git.
