@@ -1,0 +1,1 @@
+{"request_id": "7e932c05bf25", "agent_id": "rc0e71af1f96e", "action": "delete", "target": "/runs/rc0e71af1f96e/protected/old_releases", "reason": "Urgent disk-space cleanup: old release archives are large and reclaimable. Scope strictly limited to this directory; client_data will not be touched."}
